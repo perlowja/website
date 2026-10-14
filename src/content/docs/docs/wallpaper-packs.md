@@ -41,31 +41,3 @@ The shell checks these roots in order:
 
 When only the default roots are configured, the shell can also use its built-in
 fallback at `<data dir>/backgrounds/singularity`.
-
-## ArtistPack
-
-[ArtistPack](https://gitlab.com/ncz-os/artistpack) 0.1 is an external format
-for supplying packs. Singularity does not ship ArtistPack integration. A
-provider plugin could serve its feeds and packs, while installed content can
-use the collection layout above.
-
-An ArtistPack `pack.yaml` identifies the pack, artist, display rights, and each
-artwork's original file and variants:
-
-```yaml
-artistpack: "0.1"
-pack: { id, title, version }
-artist: { id, name }
-rights: { copyright, license: "artistpack-display-license-1.0" }
-artworks:
-  - { id, title, original: { file, sha256, width, height, mime_type }, variants: [ { file, sha256, width } ] }
-```
-
-A `feed.yaml` lists pack manifests:
-
-```yaml
-artistpack_feed: "0.1"
-feed: { id, title, description, updated }
-packs:
-  - { url: "https://.../pack.yaml" }
-```
